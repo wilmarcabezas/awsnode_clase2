@@ -21,8 +21,8 @@ const getProducts = async () =>{
 
       await client.connect();
 
-      //const res = await client.query("SELECT * FROM app_product where title not like '%ajuste%'");
-      const res = await client.query("SELECT * FROM app_product where ID=11889900");
+      const res = await client.query("SELECT * FROM app_product where title not like '%ajuste%'");
+      //const res = await client.query("SELECT * FROM app_product where ID=11889900");
       
       const result = res.rows;
       await client.end();
