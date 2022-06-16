@@ -138,4 +138,9 @@ app.put('/productsnoimg/:id',cors(),async (req,res)=>{
     res.status(200).json(await updateProductNoImg(data.title,data.description,data.price,data.deleted, data.id, data.cambio, data.historia));
 })
 
-app.listen(3000);
+const port = process.env.PORT || 3000;
+
+app.listen(port, ()=> {   
+    console.log('http://localhost:3000')
+      }
+  );
