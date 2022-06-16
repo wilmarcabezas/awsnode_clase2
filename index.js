@@ -51,7 +51,7 @@ const getProductId = async (id) =>{
       return result;
 }
 
-const  updateProduct = async (title, description, price, image, deleted, id) =>{
+const  updateProduct = async (title, description, price, image, deleted, id,cambio, historia) =>{
     const client = new Client({
         user: 'u84a8mg6prrja3',
         host: 'ec2-52-20-25-139.compute-1.amazonaws.com',
@@ -64,8 +64,11 @@ const  updateProduct = async (title, description, price, image, deleted, id) =>{
       })
 
       await client.connect();
-      console.log("UPDATE app_product SET title='"+title+"', description='"+description+"', price="+price+", image='"+image+"', deleted='"+ deleted + "' where id="+id);
-      const res = await client.query("UPDATE app_product SET title='"+title+"', description='"+description+"', price="+price+", image='"+image+"', deleted='"+ deleted + "' where id="+id);
+      
+      historia=historia+"}";
+      var newJsonDataStringyfied = JSON.stringify(historia);
+
+      const res = await client.query("UPDATE app_product SET title='"+title+"', description='"+description+"', price="+price+", image='"+image+"', deleted='"+ deleted + "',price_history='"+historia+"' where id="+id);
       
       await client.end();
 
@@ -116,10 +119,11 @@ app.put('/products/:id',cors(),async (req,res)=>{
         price:req.body.price,
         image:req.body.image,
         deleted:req.body.deleted,
-        cambio:req.body.cambio
+        cambio:req.body.cambio,
+        historia:req.body.historia,
     };
 
-    res.status(200).json(await updateProduct(data.title,data.description,data.price,data.image,data.deleted, data.id));
+    res.status(200).json(await updateProduct(data.title,data.description,data.price,data.image,data.deleted, data.id, data.cambio,data.historia));
 })
 
 app.put('/productsnoimg/:id',cors(),async (req,res)=>{
