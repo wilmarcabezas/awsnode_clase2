@@ -67,7 +67,8 @@ const  updateProduct = async (title, description, price, image, deleted, id,camb
       
       historia=historia+"}";
       var newJsonDataStringyfied = JSON.stringify(historia);
-
+      title = title.replace(","," ");
+      description = description.replace(","," ");
       const res = await client.query("UPDATE app_product SET title='"+title+"', description='"+description+"', price="+price+", image='"+image+"', deleted='"+ deleted + "',price_history='"+historia+"' where id="+id);
       
       await client.end();
@@ -88,7 +89,10 @@ const  updateProductNoImg = async (title, description, price, deleted, id, cambi
 
       await client.connect();
       historia=historia+"}";
+      historia=historia.replace("}}","}");
       var newJsonDataStringyfied = JSON.stringify(historia);
+      title = title.replace(","," ");
+      description = description.replace(","," ");
       console.log(historia);
 
       const res = await client.query("UPDATE app_product SET title='"+title+"', description='"+description+"', price="+price+", deleted='"+ deleted + "',price_history='"+historia+"' where id="+id);
