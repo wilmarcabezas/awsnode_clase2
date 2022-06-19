@@ -9,11 +9,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const getProducts = async () =>{
     const client = new Client({
-        user: 'u84a8mg6prrja3',
-        host: 'ec2-52-20-25-139.compute-1.amazonaws.com',
-        database: 'd569q9bm5mqdje',
-        password: 'p1ea80830e6cf0d0c2ed4723bce6f2e2b6cac371cb718acc4691da844445c7507',
-        port: 5432,
+        user: process.env.DBUSER,
+        host: process.env.DBSERVER,
+        database: process.env.DB,
+        password: process.env.DBPWD,
+        port: process.env.DBPORT,
         ssl:{
             rejectUnauthorized:false,
         }
@@ -32,11 +32,11 @@ const getProducts = async () =>{
 
 const getProductId = async (id) =>{
     const client = new Client({
-        user: 'u84a8mg6prrja3',
-        host: 'ec2-52-20-25-139.compute-1.amazonaws.com',
-        database: 'd569q9bm5mqdje',
-        password: 'p1ea80830e6cf0d0c2ed4723bce6f2e2b6cac371cb718acc4691da844445c7507',
-        port: 5432,
+        user: process.env.DBUSER,
+        host: process.env.DBSERVER,
+        database: process.env.DB,
+        password: process.env.DBPWD,
+        port: process.env.DBPORT,
         ssl:{
             rejectUnauthorized:false,
         }
@@ -53,11 +53,11 @@ const getProductId = async (id) =>{
 
 const  updateProduct = async (title, description, price, image, deleted, id,cambio, historia) =>{
     const client = new Client({
-        user: 'u84a8mg6prrja3',
-        host: 'ec2-52-20-25-139.compute-1.amazonaws.com',
-        database: 'd569q9bm5mqdje',
-        password: 'p1ea80830e6cf0d0c2ed4723bce6f2e2b6cac371cb718acc4691da844445c7507',
-        port: 5432,
+        user: process.env.DBUSER,
+        host: process.env.DBSERVER,
+        database: process.env.DB,
+        password: process.env.DBPWD,
+        port: process.env.DBPORT,
         ssl:{
             rejectUnauthorized:false,
         }
@@ -77,11 +77,11 @@ const  updateProduct = async (title, description, price, image, deleted, id,camb
 }
 const  updateProductNoImg = async (title, description, price, deleted, id, cambio, historia) =>{
     const client = new Client({
-        user: 'u84a8mg6prrja3',
-        host: 'ec2-52-20-25-139.compute-1.amazonaws.com',
-        database: 'd569q9bm5mqdje',
-        password: 'p1ea80830e6cf0d0c2ed4723bce6f2e2b6cac371cb718acc4691da844445c7507',
-        port: 5432,
+        user: process.env.DBUSER,
+        host: process.env.DBSERVER,
+        database: process.env.DB,
+        password: process.env.DBPWD,
+        port: process.env.DBPORT,
         ssl:{
             rejectUnauthorized:false,
         }
