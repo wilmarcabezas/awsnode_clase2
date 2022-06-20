@@ -1,4 +1,5 @@
 const { Client } = require('pg')
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -7,13 +8,22 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+
+
 const getProducts = async () =>{
+    const dbServer = process.env.DB_SERVER;
+    const dbUser = process.env.DB_USER;
+    const dbDatabase = process.env.DB_DB;
+    const dbPassword = process.env.DB_PWD;
+    const dbPort= process.env.DB_PORT;
+
     const client = new Client({
-        user: process.env.DBUSER,
-        host: process.env.DBSERVER,
-        database: process.env.DB,
-        password: process.env.DBPWD,
-        port: process.env.DBPORT,
+        user: dbUser,
+        host: dbServer,
+        database: dbDatabase,
+        password: dbPassword,
+        port: dbPort,
         ssl:{
             rejectUnauthorized:false,
         }
@@ -102,7 +112,6 @@ const  updateProductNoImg = async (title, description, price, deleted, id, cambi
       return res;
 }
 
-
 app.get('/products',cors(),async (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     res.status(200).json(await getProducts());
@@ -149,6 +158,6 @@ app.put('/productsnoimg/:id',cors(),async (req,res)=>{
 const port = process.env.PORT || 3000;
 
 app.listen(port, ()=> {   
-    console.log('http://localhost:3000')
+    console.log('Open http://localhost:3000')
       }
   );
